@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: example-app-1
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: fluxcd-local
+  url: https://github.com/garfiny/flux-bootstrap
