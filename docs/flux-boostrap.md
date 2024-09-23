@@ -18,20 +18,9 @@ docker run -it --rm -v ${HOME}:/root/ -v ${PWD}:/work -w /work --net host alpine
 
 export GITHUB_TOKEN=<your-token>
 
-4. Bootstrap flush for github
+Note: if there's local proxy configured, kind cluster might not be able pull flux images, so you need to do step 4.
 
-```
-flux bootstrap github \
-  --token-auth \
-  --owner=garfiny \
-  --repository=flux-bootstrap \
-  --path=kubernetes/fluxcd/repositories/infra-repo/clusters/dev-cluster \ // where flux stores the yaml files
-  --personal \
-  --branch fluxcd-local
-```
-Note: if there's local proxy configured, kind cluster might not be able pull flux images, so you need to do step 5.
-
-5. Load images to Kind cluster (Optional)
+4. Load images to Kind cluster (Optional)
 
 - Docker pull image to local
 
@@ -49,3 +38,15 @@ Note: if there's local proxy configured, kind cluster might not be able pull flu
         kind load docker-image ghcr.io/fluxcd/kustomize-controller:v1.3.0 --name fluxcd
         kind load docker-image ghcr.io/fluxcd/helm-controller:v1.0.1 --name fluxcd
     ```
+
+4. Bootstrap flush for github
+
+```
+flux bootstrap github \
+  --token-auth \
+  --owner=garfiny \
+  --repository=flux-bootstrap \
+  --path=kubernetes/fluxcd/repositories/infra-repo/clusters/dev-cluster \ // where flux stores the yaml files
+  --personal \
+  --branch fluxcd-local
+```
