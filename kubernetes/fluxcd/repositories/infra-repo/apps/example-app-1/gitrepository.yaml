@@ -6,5 +6,5 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: fluxcd-local
+    branch: main
   url: https://github.com/garfiny/flux-bootstrap
